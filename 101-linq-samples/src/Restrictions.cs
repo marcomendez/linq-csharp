@@ -24,6 +24,7 @@ namespace Try101LinqSamples
             {
                 Console.WriteLine(x);
             }
+
             #endregion
             return 0;
         }
@@ -34,6 +35,7 @@ namespace Try101LinqSamples
             List<Product> products = GetProductList();
 
             var soldOutProducts = from prod in products
+                                  where prod.UnitsInStock == 0
                                   select prod;
 
             Console.WriteLine("Sold out products:");
@@ -51,7 +53,7 @@ namespace Try101LinqSamples
             List<Product> products = GetProductList();
 
             var expensiveInStockProducts = from prod in products
-                                           where prod.UnitPrice > 3.00M
+                                           where prod.UnitsInStock > 0 && prod.UnitPrice > 3.00M
                                            select prod;
 
             Console.WriteLine("In-stock products that cost more than 3.00:");
